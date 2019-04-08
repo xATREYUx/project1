@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  username: MyString
+  date: 2019-04-07 00:18:32
+  client: MyText
+  task: MyText
+  timebilled: 9.99
+  notes: MyText
+
+two:
+  username: MyString
+  date: 2019-04-07 00:18:32
+  client: MyText
+  task: MyText
+  timebilled: 9.99
+  notes: MyText

@@ -1,0 +1,5 @@
+<h1>test</h1>
+<%= form_tag(@tasks method: :get) do %>
+  Client <%= text_field_tag :client, params[:client] %>
+  <%= submit_tag 'Search', name: nil %>
+  <% end %>

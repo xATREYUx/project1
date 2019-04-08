@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tasks</h1>
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @allclients.each do |task| %>
+      <tr>
+        <td><%= link_to task.client, tasks_path(:client => task.client) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<table>
+  <%= link_to "All Tasks", tasks_path %>
+
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.id %></td>
+        <td><%= task.date %></td>
+        <td><%= link_to task.client, tasks_path(:client => task.client) %></td>
+        <td><%= task.task %></td>
+        <td><%= task.timebilled %></td>
+        <td><%= task.notes %></td>
+        <td><%= link_to 'Show', task %></td>
+        <td><%= link_to 'Edit', edit_task_path(task) %></td>
+        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= @tasks.sum(:timebilled) %>
