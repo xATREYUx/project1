@@ -6,8 +6,8 @@ class TasksController < ApplicationController
   def index
     # @tasks = Task.all
 
-  @tasks = Task.where(nil) # creates an anonymous scope
-  @tasks = @tasks.client(params[:client]) if params[:client].present?
+  @tasks = Task.where(nil).order("date DESC") # creates an anonymous scope
+  @tasks = @tasks.client(params[:client]) if params[:client]
   @allclients = Task.select(:client).distinct
     # @tasks = Task.where(client: "ritchie")
 
@@ -22,6 +22,7 @@ class TasksController < ApplicationController
   # GET /tasks/1.json
   def show
     @task = Task.find(params[:id])
+    @taskdate = @task.date
   end
 
   # GET /tasks/new
@@ -66,12 +67,18 @@ class TasksController < ApplicationController
   # DELETE /tasks/1
   # DELETE /tasks/1.json
   def destroy
+    @task=Task.find(params[:id])
     @task.destroy
-    respond_to do |format|
-      format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+        flash[:success] = "User deleted"
+        redirect_to tasks_url
+end
+  # def destroy
+  #   @task.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -81,7 +88,7 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:client, :task, :timebilled, :notes)
+      params.require(:task).permit(:date, :client, :task, :timebilled, :notes)
     end
 
 

@@ -1,4 +1,14 @@
-<h1>Brickell Mitigation</h1>
-<%= link_to "New User", new_user_path %>
-<%= link_to "New Task", new_task_path %>
-<%= link_to "All Tasks", tasks_path %>
+<h1 >Brickell Mitigation</h1>
+  <div class="row">
+  <div class="col-4">.col-9</div>
+  <div class="col-4">.col-4<br>Since 9 + 4 = 13 &gt; 12, this 4-column-wide div gets wrapped onto a new line as one contiguous unit.</div>
+  <div class="col-4">.col-6<br>Subsequent columns continue along the new line.</div>
+</div>
+
+<div class="row">
+  <ol class="list-group">
+    <li class="list-group-item"><%= link_to "New User", new_user_path %></li>
+    <li class="list-group-item"><%= link_to "New Task", new_task_path %></li>
+    <li class="list-group-item"><%= link_to "All Tasks", tasks_path %></li>
+  </ol>
+</div>

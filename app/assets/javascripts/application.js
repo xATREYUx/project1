@@ -8,8 +8,18 @@
 // compiled file. JavaScript code in this file should be added after the last require_* statement.
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
-// about supported directives.
-//
-//= require rails-ujs
+// about supported directives
+
+
 //= require turbolinks
 //= require_tree .
+//= require jquery3
+//= require rails-ujs
+//= require bootstrap
+//= require popper
+//= require flatpickr
+
+$(document).ready(function(){
+  $('#flatpickr-input').flatpickr();
+
+});

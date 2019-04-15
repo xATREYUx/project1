@@ -1,44 +1,113 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Tasks</h1>
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
+<div class="row">
+  <div class="col-6" >
+  <%= link_to "All Tasks", tasks_path, :class => "btn btn-primary" %>
+    <div class="dropdown show d-inline">
+      <a class="btn btn-secondary btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        By Client
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <%= link_to "All Tasks", tasks_path, :class => "dropdown-item" %>
+        <% @allclients.each do |task| %>
+        <%= link_to task.client, tasks_path(:client => task.client), :class => "dropdown-item" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
+    <h3>Stats</h3>
+    <div class="col-12">
+      Today's Date: <%= Date.today %>
+    </div>
+    <div class="col-12">
+      Time Billed: <%= @tasks.sum(:timebilled) %> hour(s)
+    </div>
+  </div>
+</div>
+
+<!-- <div id = "clientlist" class = "row"> -->
+  <!-- <div class="dropdown show">
+    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Dropdown link
+    </a>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      <% @allclients.each do |task| %>
+      <a class="dropdown-item" href= "#"><%= link_to task.client, tasks_path(:client => task.client) %></a>
+      <% end %>
+    </div>
+  </div>
+</div> -->
+
+<!-- <div class="dropdown show">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    By Client
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <%= link_to "All Tasks", tasks_path, :class => "dropdown-item" %>
     <% @allclients.each do |task| %>
-      <tr>
-        <td><%= link_to task.client, tasks_path(:client => task.client) %></td>
-      </tr>
+    <%= link_to task.client, tasks_path(:client => task.client), :class => "dropdown-item" %>
     <% end %>
-  </tbody>
-</table>
-<table>
-  <%= link_to "All Tasks", tasks_path %>
+  </div>
+</div> -->
+  <!-- <ol class="list-group">
+    <% @allclients.each do |task| %>
+    <li class="list-group-item"><%= link_to task.client, tasks_path(:client => task.client) %></li>
+    <% end %>
+  </ol> -->
+
+   <!-- <div class="col-4">
+     <% @allclients.each do |task| %>
+        <div><%= link_to task.client, tasks_path(:client => task.client) %>
+        </div>
+     <% end %>
+   </div>
+
+   <div class="col-4">
+   </div>
+
+   <div class="col-4">
+     <h5>Time</h5>
+     <%= @tasks.sum(:timebilled) %>
+   </div> -->
+
+
+
+<table class="table table-striped table-bordered">
 
   <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
+      <th >#</th>
+      <th >Date</th>
+      <th >Client</th>
+      <th >Task</th>
+      <th >Time</th>
   </thead>
-
   <tbody>
     <% @tasks.each do |task| %>
-      <tr>
-        <td><%= task.id %></td>
-        <td><%= task.date %></td>
-        <td><%= link_to task.client, tasks_path(:client => task.client) %></td>
-        <td><%= task.task %></td>
-        <td><%= task.timebilled %></td>
-        <td><%= task.notes %></td>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+    <tr  scope="row">
+      <th ><%= task.id %></th>
+      <td ><%= task.date&.strftime("%b %d, %Y") %></td>
+      <td ><%= link_to task.client, tasks_path(:client => task.client) %></td>
+      <td ><%= task.task %></td>
+      <td ><%= task.timebilled %></td>
+    </tr>
+    <tr scope="row">
+      <td ></td>
+      <td >
+        <div class="btn-group" role="group" >
+        <%= link_to 'Show', task, class: "btn btn-success btn-sm" %>
+        <%= link_to 'Edit', edit_task_path(task), class: "btn btn-info btn-sm" %>
+        <%= link_to 'Delete', task, :method => :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
+      </div>
+    </td>
+      <td ></td>
+      <td>Notes: <%= task.notes %></td>
+      <td ></td>
+    </tr>
+</div>
+   <% end %>
+
   </tbody>
 </table>
-<%= @tasks.sum(:timebilled) %>

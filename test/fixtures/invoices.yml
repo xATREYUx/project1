@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  invoicenum: MyString
+  date: 2019-04-14
+  totalusd: 9.99
+  time: 9.99
+
+two:
+  invoicenum: MyString
+  date: 2019-04-14
+  totalusd: 9.99
+  time: 9.99
