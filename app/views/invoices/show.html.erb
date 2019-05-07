@@ -1,2 +1,24 @@
-<h1>Invoices#show</h1>
-<p>Find me in app/views/invoices/show.html.erb</p>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Invnum:</strong>
+  <%= @invoice.[invnum %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @invoice.date %>
+</p>
+
+<p>
+  <strong>Totusd:</strong>
+  <%= @invoice.totusd %>
+</p>
+
+<p>
+  <strong>Tottime:</strong>
+  <%= @invoice.tottime %>
+</p>
+
+<%= link_to 'Edit', edit_invoice_path(@invoice) %> |
+<%= link_to 'Back', invoices_path %>

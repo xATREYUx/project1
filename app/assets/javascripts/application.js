@@ -18,8 +18,13 @@
 //= require bootstrap
 //= require popper
 //= require flatpickr
+//= require moment
+//= require bootstrap-datepicker
+
+
+
 
 $(document).ready(function(){
-  $('#flatpickr-input').flatpickr();
+  $('.datepicker').datepicker();
 
 });

@@ -1,29 +1,48 @@
 require 'test_helper'
 
 class InvoicesControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    @invoice = invoices(:one)
+  end
+
   test "should get index" do
-    get invoices_index_url
+    get invoices_url
     assert_response :success
   end
 
   test "should get new" do
-    get invoices_new_url
+    get new_invoice_url
     assert_response :success
   end
 
-  test "should get create" do
-    get invoices_create_url
+  test "should create invoice" do
+    assert_difference('Invoice.count') do
+      post invoices_url, params: { invoice: { [invnum: @invoice.[invnum, date: @invoice.date, tottime: @invoice.tottime, totusd: @invoice.totusd } }
+    end
+
+    assert_redirected_to invoice_url(Invoice.last)
+  end
+
+  test "should show invoice" do
+    get invoice_url(@invoice)
     assert_response :success
   end
 
-  test "should get show" do
-    get invoices_show_url
+  test "should get edit" do
+    get edit_invoice_url(@invoice)
     assert_response :success
   end
 
-  test "should get destroy" do
-    get invoices_destroy_url
-    assert_response :success
+  test "should update invoice" do
+    patch invoice_url(@invoice), params: { invoice: { [invnum: @invoice.[invnum, date: @invoice.date, tottime: @invoice.tottime, totusd: @invoice.totusd } }
+    assert_redirected_to invoice_url(@invoice)
   end
 
+  test "should destroy invoice" do
+    assert_difference('Invoice.count', -1) do
+      delete invoice_url(@invoice)
+    end
+
+    assert_redirected_to invoices_url
+  end
 end

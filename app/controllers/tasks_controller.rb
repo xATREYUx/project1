@@ -4,18 +4,24 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    # @tasks = Task.all
-
-  @tasks = Task.where(nil).order("date DESC") # creates an anonymous scope
-  @tasks = @tasks.client(params[:client]) if params[:client]
   @allclients = Task.select(:client).distinct
-    # @tasks = Task.where(client: "ritchie")
 
-    # if params[:client]
-    #   @tasks = Task.where('client LIKE ?', "%#{params[:client]}%")
-    # else
-    #   @tasks = Task.all
-    # end
+  @tasks = Task.all.order("created_at DESC").paginate(:per_page => 30, :page => params[:page]) # creates an anonymous scope
+
+
+
+  # @tasks = @tasks.client(params[:client]) if params[:client]
+  # @search = TaskSearch.new(params[:search])
+  # @tasks = @search.scope.order("date DESC")
+
+  # if params[:search] && params[:search][:date].present?
+  #   start_date, end_date = params[:search][:date].split(' - ')
+  #   @tasks = Task.taskdate(start_date, end_date)
+  # else
+  #   @tasks = Task.all
+  # end
+
+
   end
 
   # GET /tasks/1
@@ -41,7 +47,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
+        format.html { redirect_to tasks_path, notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new }

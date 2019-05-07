@@ -1,37 +1,33 @@
-<table class="table table-striped table-bordered">
+<p id="notice"><%= notice %></p>
 
+<h1>Invoices</h1>
+
+<table>
   <thead>
-      <th >#</th>
-      <th >Date</th>
-      <th >Client</th>
-      <th >Task</th>
-      <th >Time</th>
+    <tr>
+      <th>Invnum</th>
+      <th>Date</th>
+      <th>Totusd</th>
+      <th>Tottime</th>
+      <th colspan="3"></th>
+    </tr>
   </thead>
-  <tbody>
-    <% @tasks.each do |task| %>
-    <tr  scope="row">
-      <th ><%= invoice.id %></th>
-      <td ><%= invoice.date&.strftime("%b %d, %Y") %></td>
-      <td ><%= link_to invoice.client, tasks_path(:client => task.client) %></td>
-      <td ><%= invoice.invoicenum %></td>
-      <td ><%= invoice.totalusd %></td>
-      <td ><%= invoice.time %></td>
-    </tr>
-    <tr scope="row">
-      <td ></td>
-      <td >
-        <div class="btn-group" role="group" >
-        <%= link_to 'Show', invoice, class: "btn btn-success btn-sm" %>
-        <%= link_to 'Edit', edit_invoice_path(task), class: "btn btn-info btn-sm" %>
-        <%= link_to 'Delete', invoice, :method => :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
-      </div>
-    </td>
-      <td ></td>
-      <td>Notes: <%= invoice.notes %></td>
-      <td ></td>
-    </tr>
-</div>
-   <% end %>
 
+  <tbody>
+    <% @invoices.each do |invoice| %>
+      <tr>
+        <td><%= invoice.invnum %></td>
+        <td><%= invoice.date %></td>
+        <td><%= invoice.totusd %></td>
+        <td><%= invoice.tottime %></td>
+        <td><%= link_to 'Show', invoice %></td>
+        <td><%= link_to 'Edit', edit_invoice_path(invoice) %></td>
+        <td><%= link_to 'Destroy', invoice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
+
+<br>
+
+<%= link_to 'New Invoice', new_invoice_path %>

@@ -1,14 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'invoices/index'
 
-  get 'invoices/new'
-
-  get 'invoices/create'
-
-  get 'invoices/show'
-
-  get 'invoices/destroy'
 
   # get 'users/index'
   # get 'users/new'
@@ -21,4 +13,5 @@ root 'pages#home'
 resources :users
 resources :tasks
 resources :invoices
+resources :searches
 end
