@@ -8,7 +8,8 @@ class TasksController < ApplicationController
 
   @tasks = Task.all.order("created_at DESC").paginate(:per_page => 30, :page => params[:page]) # creates an anonymous scope
 
-
+  @search = Search.new
+  @allclients = Task.select(:client).distinct
 
   # @tasks = @tasks.client(params[:client]) if params[:client]
   # @search = TaskSearch.new(params[:search])
@@ -29,11 +30,15 @@ class TasksController < ApplicationController
   def show
     @task = Task.find(params[:id])
     @taskdate = @task.date
+    @search = Search.find(params[:id])
+    @search_params = @search
   end
 
   # GET /tasks/new
   def new
     @task = Task.new
+    @allclients = Client.select(:client_name).distinct.order('client_name ASC')
+
   end
 
   # GET /tasks/1/edit
@@ -43,6 +48,8 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
+    @search = Search.create!(search_params)
+    redirect_to @search
     @task = Task.new(task_params)
 
     respond_to do |format|
@@ -95,6 +102,9 @@ end
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
       params.require(:task).permit(:date, :client, :task, :timebilled, :notes)
+    end
+    def search_params
+      params.require(:search).permit(:keywords, :date_from, :date_to)
     end
 
 

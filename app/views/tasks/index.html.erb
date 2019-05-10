@@ -1,8 +1,10 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Tasks</h1>
+<%= render "pages/side_menu" %>
 
 <div class="row">
+  <div class="col-6">
+    <h1>Tasks</h1>
+  </div>
   <!-- <div class="col-6" >
   <%= link_to "All Tasks", tasks_path, :class => "btn btn-primary" %>
     <div class="dropdown show d-inline">
@@ -28,13 +30,13 @@
 
 
   </div> -->
-  <div class="col-6 offset-6">
+  <div class="col-6  ">
     <h3>Stats</h3>
-    <div class="col-12">
-      Today's Date: <%= Date.today %>
-      Case with most unbilled hours
-      time and which case has been unbilled the longest
-    </div>
+      <div class="col-12">
+        Today's Date: <%= Date.today %>
+        Case with most unbilled hours
+        time and which case has been unbilled the longest
+      </div>
     <div class="col-12">
     </div>
   </div>
@@ -91,8 +93,7 @@
        <%# submit_tag "Search" %>
      </p>
    <%# end %>
-    <%= link_to "Search", new_search_path, class: 'btn btn-primary btn-sm'%>
-    <%= link_to "New Task", new_task_path, class: 'btn btn-primary btn-sm' %>
+
 
 
    <div class="row">

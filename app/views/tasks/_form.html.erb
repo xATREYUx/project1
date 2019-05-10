@@ -24,47 +24,39 @@
 
 <% end %> -->
 
-
 <div><%= link_to "All Tasks", tasks_path %></div>
 
   <%= form_with(model: task, local: true) do |f| %>
     <div class="row">
-      <div class="col-6">
-        <div class="row">
-          <div class="col-3">
+          <div class="col-1">
             <%= f.label :date %>
           </div>
-          <div class="col-9">
+          <div class="col-3">
             <%= f.date_field :date, id: "flatpickr-input", data: {readonly: ""} %>
           </div>
-        </div>
-        <div class="row">
-          <div class=" col-3">
+          <div class=" col-1">
             <%= f.label :client %>
           </div>
-          <div class=" col-9">
-            <%= f.text_field :client, size: "30" %>
-          </div>
-        </div>
-        <div class="row">
           <div class=" col-3">
+
+            <%= f.select :client_name, options_for_select(@allclients.collect{|p| [ p.client_name, p.id ] }) %>
+          </div>
+          <div class=" col-1">
             <%= f.label :timebilled %>
           </div>
-          <div class=" col-9">
+          <div class=" col-3">
             <%= f.text_field :timebilled, size: "5" %>
           </div>
-        </div>
-      </div>
     </div>
 
     <div class="row">
-        <div class="col-6 offset-3">
+        <div class="col-10">
           <%= f.label :task %>
-          <%= f.text_area :task, class: "form-control", rows: "8" %>
+          <%= f.text_area :task, class: "form-control", rows: "2" %>
         </div>
-        <div class="col-6 offset-3">
+        <div class="col-10">
           <%= f.label :notes %>
-          <%= f.text_area :notes, class: "form-control", rows: "8"%>
+          <%= f.text_area :notes, class: "form-control", rows: "4"%>
         </div>
     </div>
       <div class="row">

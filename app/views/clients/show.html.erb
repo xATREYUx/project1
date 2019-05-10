@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Client name:</strong>
+  <%= @client.client_name %>
+</p>
+
+<p>
+  <strong>Attorney:</strong>
+  <%= @client.attorney %>
+</p>
+
+<p>
+  <strong>Case number:</strong>
+  <%= @client.case_number %>
+</p>
+
+<p>
+  <strong>Facility address:</strong>
+  <%= @client.facility_address %>
+</p>
+
+<p>
+  <strong>Jail number:</strong>
+  <%= @client.jail_number %>
+</p>
+
+<%= link_to 'Edit', edit_client_path(@client) %> |
+<%= link_to 'Back', clients_path %>

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
 
 
+  resources :clients
   # get 'users/index'
   # get 'users/new'
   # get 'users/create'

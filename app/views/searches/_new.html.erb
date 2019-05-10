@@ -1,0 +1,9 @@
+
+<%= form_for @search do |f| %>
+<ol class="list-inline">
+    <li class="list-inline-item"><%= f.text_field :keywords, class: 'form-control', placeholder: "Search" %></li>
+     <li class="list-inline-item"><%= f.date_field :date_from, class: 'form-control ', type: "date"%></li>
+    <li class="actions list-inline-item"><%= f.date_field :date_to, class: 'form-control ', type: "date" %></li>
+    <li class="actions list-inline-item"><%= f.submit "Search" %></li>
+</ol>
+<% end %>

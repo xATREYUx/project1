@@ -13,7 +13,7 @@ class SearchesController < ApplicationController
   def show
     @search = Search.find(params[:id])
     @search_params = @search
-
+ 
   end
 
   private
