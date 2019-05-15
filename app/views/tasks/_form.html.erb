@@ -39,7 +39,7 @@
           </div>
           <div class=" col-3">
 
-            <%= f.select :client_name, options_for_select(@allclients.collect{|p| [ p.client_name, p.id ] }) %>
+            <%= f.select :client, options_for_select(@allclients.collect{|p| [ p.client_name, p.client_name ] }) %>
           </div>
           <div class=" col-1">
             <%= f.label :timebilled %>

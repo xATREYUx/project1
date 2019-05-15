@@ -30,8 +30,7 @@ class TasksController < ApplicationController
   def show
     @task = Task.find(params[:id])
     @taskdate = @task.date
-    @search = Search.find(params[:id])
-    @search_params = @search
+ 
   end
 
   # GET /tasks/new
@@ -48,8 +47,7 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
-    @search = Search.create!(search_params)
-    redirect_to @search
+
     @task = Task.new(task_params)
 
     respond_to do |format|
@@ -103,9 +101,7 @@ end
     def task_params
       params.require(:task).permit(:date, :client, :task, :timebilled, :notes)
     end
-    def search_params
-      params.require(:search).permit(:keywords, :date_from, :date_to)
-    end
+
 
 
 end
