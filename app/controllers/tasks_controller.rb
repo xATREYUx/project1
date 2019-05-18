@@ -6,7 +6,8 @@ class TasksController < ApplicationController
   def index
   @allclients = Task.select(:client).distinct
 
-  @tasks = Task.all.order("created_at DESC").paginate(:per_page => 30, :page => params[:page]) # creates an anonymous scope
+  @tasks = Task.all.order("created_at DESC")
+  # .paginate(:per_page => 30, :page => params[:page]) # creates an anonymous scope
 
   @search = Search.new
   @allclients = Task.select(:client).distinct
@@ -30,7 +31,7 @@ class TasksController < ApplicationController
   def show
     @task = Task.find(params[:id])
     @taskdate = @task.date
- 
+
   end
 
   # GET /tasks/new
